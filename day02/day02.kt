@@ -27,13 +27,6 @@ class Password(
         return valid
     }
 
-    fun dummy() {
-        println("dummyfunc")
-        println("nMin = $nMin")
-        println("nMax = $nMax")
-        println("char = $character")
-        println("pw = $pw")
-    }
 }
 
 
@@ -43,19 +36,17 @@ fun main() {
     val linelist = mutableListOf<String>()
     fstream.bufferedReader().forEachLine {it -> linelist.add(it)}
 
-    
     var n_good = 0
     for (l in linelist) {
         val pw = Password(l)
         if (pw.is_valid()) {
+            println(l)
             n_good = n_good + 1
+        } else {
+            println("not good: $l")
         }
     }
     
     println(n_good)
     
-    // val obj = Password("1-3 a: ffaaasssras")
-    // println(obj.is_valid())
-
-
 }
