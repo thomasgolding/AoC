@@ -27,6 +27,18 @@ class Password(
         return valid
     }
 
+    
+    fun is_valid2(): Boolean {
+        var valid = false
+        val cond1 = pw[nMin-1] == character
+        val cond2 = pw[nMax-1] == character
+        if ((cond1 || cond2) && ! (cond1 && cond2)) {
+            valid = true
+        }
+
+        return valid
+    }
+
 }
 
 
@@ -37,16 +49,20 @@ fun main() {
     fstream.bufferedReader().forEachLine {it -> linelist.add(it)}
 
     var n_good = 0
+    var n_good2 = 0
     for (l in linelist) {
         val pw = Password(l)
         if (pw.is_valid()) {
-            println(l)
             n_good = n_good + 1
-        } else {
-            println("not good: $l")
+        } 
+        if (pw.is_valid2()) {
+            n_good2 = n_good2 + 1
         }
     }
-    
-    println(n_good)
-    
+
+    println("part 1: $n_good")
+    println("part 2: $n_good2")
+
+
+   
 }
